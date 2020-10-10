@@ -10,7 +10,7 @@ class Autor(
         var id: Long? = null,
         @Column(nullable = false)
         var nome: String,
-        @Column(nullable = false)
+        @Column(nullable = false, unique = true)
         var email: String,
         @Column(length = 400, nullable = false)
         var descricao: String,
