@@ -9,6 +9,9 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import java.util.*
 
+/**
+ * https://www.baeldung.com/web-mvc-configurer-adapter-deprecated
+ */
 @Configuration
 class WebMvcConfig : WebMvcConfigurer {
 
