@@ -29,10 +29,7 @@ import kotlin.reflect.KClass
  *  - https://www.enterprisedb.com/blog/serializable-postgresql-11-and-beyond
  *  - https://stackoverflow.com/questions/50745282/postgress-serializable-transaction-blocks-concurrent-write
  */
-class UniqueValueValidator : ConstraintValidator<Unique, Any> {
-
-    @Autowired
-    lateinit var manager: EntityManager;
+class UniqueValueValidator(private val manager: EntityManager) : ConstraintValidator<Unique, Any> {
 
     private var fieldName: String? = null
     private var entityClass: KClass<*>? = null
@@ -48,9 +45,9 @@ class UniqueValueValidator : ConstraintValidator<Unique, Any> {
             return true
         }
 
-        val jpql = "SELECT e from ${entityClass?.simpleName} e where e.$fieldName = :value"
+        val jpql = "SELECT 1 from ${entityClass?.simpleName} e where e.$fieldName = :value"
         val entities = manager
-                    .createQuery(jpql, entityClass?.java)
+                    .createQuery(jpql, Integer::class.java)
                     .setParameter("value", value)
                     .resultList
 
