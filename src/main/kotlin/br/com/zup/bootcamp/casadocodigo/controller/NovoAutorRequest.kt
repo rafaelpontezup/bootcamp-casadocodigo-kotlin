@@ -1,6 +1,7 @@
 package br.com.zup.bootcamp.casadocodigo.controller
 
 import br.com.zup.bootcamp.casadocodigo.model.Autor
+import br.com.zup.bootcamp.casadocodigo.model.validator.Unique
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
@@ -10,6 +11,11 @@ data class NovoAutorRequest(
         val nome: String,
         @field:NotBlank
         @field:Email
+        @field:Unique(
+                entityClass = Autor::class,
+                fieldName = "email",
+                message = "{zup.unique.value.violation.autor}"
+        )
         val email: String,
         @field:NotBlank
         @field:Size(max = 400)

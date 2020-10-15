@@ -23,11 +23,11 @@ class AutorController(
     @PostMapping("/api/autores")
     fun novo(@RequestBody @Valid novo: NovoAutorRequest, uriBuilder: UriComponentsBuilder): ResponseEntity<Any> {
 
-        val exists = repository.existsByEmail(novo.email);
-        if (exists) {
-            throw ResponseStatusException(BAD_REQUEST,
-                    "Já existe um(a) outro(a) autor(a) com o mesmo email: ${novo.email}")
-        }
+//        val exists = repository.existsByEmail(novo.email);
+//        if (exists) {
+//            throw ResponseStatusException(BAD_REQUEST,
+//                    "Já existe um(a) outro(a) autor(a) com o mesmo email: ${novo.email}")
+//        }
 
         val autor: Autor = novo.toModel()
         repository.save(autor)

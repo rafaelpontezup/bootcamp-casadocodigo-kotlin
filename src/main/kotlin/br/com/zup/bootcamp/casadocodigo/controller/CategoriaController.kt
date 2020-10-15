@@ -20,11 +20,11 @@ class CategoriaController(private val repository: CategoriaRepository) {
     @PostMapping("/api/categorias")
     fun novo(@RequestBody @Valid nova: NovaCategoriaRequest, uriBuilder: UriComponentsBuilder): ResponseEntity<Any> {
 
-        val exists = repository.existsByNome(nova.nome)
-        if (exists) {
-            throw ResponseStatusException(BAD_REQUEST,
-                    "Já existe uma outra categoria com o mesmo nome: ${nova.nome}")
-        }
+//        val exists = repository.existsByNome(nova.nome)
+//        if (exists) {
+//            throw ResponseStatusException(BAD_REQUEST,
+//                    "Já existe uma outra categoria com o mesmo nome: ${nova.nome}")
+//        }
 
         val categoria = nova.toModel()
         repository.save(categoria)
