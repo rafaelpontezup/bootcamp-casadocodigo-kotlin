@@ -13,7 +13,7 @@ import java.net.URI
 import javax.transaction.Transactional
 import javax.validation.Valid
 
-//cdd=4
+//cdd=3
 @RestController
 class AutorController(
         private val repository: AutorRepository
@@ -22,12 +22,6 @@ class AutorController(
     @Transactional
     @PostMapping("/api/autores")
     fun novo(@RequestBody @Valid novo: NovoAutorRequest, uriBuilder: UriComponentsBuilder): ResponseEntity<Any> {
-
-//        val exists = repository.existsByEmail(novo.email);
-//        if (exists) {
-//            throw ResponseStatusException(BAD_REQUEST,
-//                    "Já existe um(a) outro(a) autor(a) com o mesmo email: ${novo.email}")
-//        }
 
         val autor: Autor = novo.toModel()
         repository.save(autor)

@@ -12,7 +12,7 @@ import java.net.URI
 import javax.transaction.Transactional
 import javax.validation.Valid
 
-//cdd=4
+//cdd=3
 @RestController
 class CategoriaController(private val repository: CategoriaRepository) {
 
@@ -20,6 +20,9 @@ class CategoriaController(private val repository: CategoriaRepository) {
     @PostMapping("/api/categorias")
     fun novo(@RequestBody @Valid nova: NovaCategoriaRequest, uriBuilder: UriComponentsBuilder): ResponseEntity<Any> {
 
+        /**
+         * Esse IF é necessário quando não usamos Bean Validation: @Unique
+         */
 //        val exists = repository.existsByNome(nova.nome)
 //        if (exists) {
 //            throw ResponseStatusException(BAD_REQUEST,

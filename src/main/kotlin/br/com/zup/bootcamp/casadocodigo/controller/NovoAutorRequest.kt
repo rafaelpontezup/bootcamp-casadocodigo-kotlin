@@ -14,7 +14,7 @@ data class NovoAutorRequest(
         @field:Unique(
                 entityClass = Autor::class,
                 fieldName = "email",
-                message = "{zup.unique.value.violation.autor}" // tip: interpolação não funcionou no Kotlin
+                message = "Já existe um(a) outro(a) autor(a) com o mesmo email: \${validatedValue}" // tip: atenção pro escape
         )
         val email: String,
         @field:NotBlank

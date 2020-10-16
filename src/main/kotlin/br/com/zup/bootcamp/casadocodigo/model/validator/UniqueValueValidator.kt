@@ -7,6 +7,9 @@ import javax.validation.ConstraintValidatorContext
 import kotlin.reflect.KClass
 
 /**
+ * Validator responsável por fazer a verificação de unicidade no banco de dados
+ *
+ * ATENÇÃO:
  * Apesar de elegante, esse tipo de solução não evita registros duplicados. É praticamente
  * impossível implementar essa verificação de unicidade no lado Java (aplicação) devido a
  * problemas e concorrência (ex.: Phantom Read Anomaly).
@@ -16,7 +19,7 @@ import kotlin.reflect.KClass
  * Possiveis soluções:
  *  - Unique Constraint + SQL-ON-CONFLICT
  *  - ADVISORY LOCKS (PostgreSQL);
- *  - Usar Serializable Isolation (depende do RDBMS, tipo de index etc)
+ *  - Usar Serializable Isolation (depende do RDBMS, tipo de index utilizado etc);
  *  - Lockar a tabela inteira: LOCK TABLE <tabela>;
  *
  * Links:
